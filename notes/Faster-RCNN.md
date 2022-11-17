@@ -8,7 +8,7 @@
 
 - 一、网络模型
 
-  ![img](https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211171050955.png?token=AIQ5HXILNMH3V23EUK56BYTDOWQ3M)
+  ![img](https://pic4.zhimg.com/80/v2-e64a99b38f411c337f538eb5f093bdf3_720w.webp)
 
   - 1）首先对图像预处理，调整到规定尺度，然后送入cnn网络。
   - 2）CNN包含13个卷积层+13个relu激活+4个pooling池化。
