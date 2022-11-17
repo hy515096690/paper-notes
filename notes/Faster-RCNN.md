@@ -8,7 +8,7 @@
 
 - 一、网络模型
 
-  ![img](https://pic4.zhimg.com/80/v2-e64a99b38f411c337f538eb5f093bdf3_720w.webp)
+  ![image-20221117112434697](C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221117112434697.png)
 
   - 1）首先对图像预处理，调整到规定尺度，然后送入cnn网络。
   - 2）CNN包含13个卷积层+13个relu激活+4个pooling池化。
