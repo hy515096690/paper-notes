@@ -37,7 +37,7 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
 
 - 3.2 cls layer 分类
 
-  <img src="C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221118145526392.png" alt="image-20221118145526392" style="zoom:67%;" />
+  ![image-20221120134311308](https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201343424.png)
 
 ​		一个anchor是一个feature map，对其进行3x3卷积（256个核），k为anchor的个数。(M/16)x(N/16)x256的特征通过1x1卷积得到(M/16)x(N/16)x2k的输出，因为这里是二分类判断positive和negative，所以该feature map上每个点的每个anchor对应2个值，表示目标和背景的概率（是因为这里是用的softmax，所以结果分类为2，这两个值加起来等于1；也可以用sigmoid，就只需要1个值了）。
 
