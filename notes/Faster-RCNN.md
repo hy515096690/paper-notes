@@ -27,17 +27,17 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
 
   ​		Faster R-CNN抛弃之前的候选框滑动算法，输入大小为（M/16）x（N/16）的特征图，通过两个分支，==***一个通过softmax分类anchors获得positive和negative分类，另一条计算anchors的bounding box的偏移量，以获得精确的proposal。最后proposal层综合positive anchors和对应的bounding box regression偏移量修正后的proposals，同时舍掉尺寸不合适的proposals。***==
 
-  <img src="https://img-blog.csdnimg.cn/7e6b844a71c04855ad060750213b2b16.png?" alt="img" style="zoom:67%;" />
+  <img src="https://img-blog.csdnimg.cn/7e6b844a71c04855ad060750213b2b16.png?" alt="img" style="zoom: 50%;" />
 
 - 3.1 anchors
 
   设置9个预设anchor，大小分别为[1:1，1:2，2:1]。
 
-  <img src="C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221118145410152.png" alt="image-20221118145410152" style="zoom:67%;" />
+  <img src="https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201344822.png" alt="image-20221120134425758" style="zoom:50%;" />
 
 - 3.2 cls layer 分类
 
-  ![image-20221120134311308](https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201343424.png)
+  <img src="https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201343424.png" alt="image-20221120134311308" style="zoom:50%;" />
 
 ​		一个anchor是一个feature map，对其进行3x3卷积（256个核），k为anchor的个数。(M/16)x(N/16)x256的特征通过1x1卷积得到(M/16)x(N/16)x2k的输出，因为这里是二分类判断positive和negative，所以该feature map上每个点的每个anchor对应2个值，表示目标和背景的概率（是因为这里是用的softmax，所以结果分类为2，这两个值加起来等于1；也可以用sigmoid，就只需要1个值了）。
 
@@ -51,7 +51,7 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
 
 其中[xa,ya,wa,ha]是anchor的中心点坐标和宽高，[tx.ty,tw,th]是这个回归层预测的偏移量，通过这个公式计算出修正后的anchor坐标[x,y,w,h]。计算如下：
 
-![image-20221120132902879](C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221120132902879.png)
+![image-20221120134445891](https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201344939.png)
 
 [px,py,pw,ph]表示原始anchor的坐标
 [dx,dy,dw,dh]表示RPN网络预测的坐标偏移
@@ -59,7 +59,7 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
 
 - 3.4 生成Proposal
 
-  <img src="C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221120130850381.png" alt="image-20221120130850381" style="zoom:33%;" />
+  <img src="https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201345660.png" alt="image-20221120134538593" style="zoom:50%;" />
 
   proposal层总共输入有：
 
@@ -92,4 +92,4 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
   （2）再将每个proposal对应的feature map区域分为pooled_w x pooled_h的网格
   （3）对网格的每一部分做max pooling
   （4）这样处理后，即使大小不同的proposal输出结果都是pooled_w x pooled_h固定大小，实现了固定长度输出
-  <img src="https://img-blog.csdnimg.cn/640ecf09f17b498fbd07cb2e0c117a65.png?" alt="img" style="zoom:33%;" />
+  <img src="https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201345526.png" alt="image-20221120134556434" style="zoom:33%;" />
