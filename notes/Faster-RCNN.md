@@ -47,7 +47,7 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
 
   偏移公式：
 
-  ![img](https://img-blog.csdnimg.cn/8c18df19bfc14615b1932488fc99d95f.png?)
+  ![image-20221120134116615](https://raw.githubusercontent.com/hy515096690/paper-notes/main/img/202211201341693.png)
 
 其中[xa,ya,wa,ha]是anchor的中心点坐标和宽高，[tx.ty,tw,th]是这个回归层预测的偏移量，通过这个公式计算出修正后的anchor坐标[x,y,w,h]。计算如下：
 
