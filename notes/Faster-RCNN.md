@@ -47,11 +47,11 @@ conv与relu不改变大小，只有pooling层使输出缩小1/2（kernel_size = 
 
   偏移公式：
 
-  ![image-20221120130304424](C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221120130304424.png)
+  ![img](https://img-blog.csdnimg.cn/8c18df19bfc14615b1932488fc99d95f.png?)
 
 其中[xa,ya,wa,ha]是anchor的中心点坐标和宽高，[tx.ty,tw,th]是这个回归层预测的偏移量，通过这个公式计算出修正后的anchor坐标[x,y,w,h]。计算如下：
 
-![image-20221120130402694](C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221120130402694.png)
+![image-20221120132902879](C:\Users\hyzl1\AppData\Roaming\Typora\typora-user-images\image-20221120132902879.png)
 
 [px,py,pw,ph]表示原始anchor的坐标
 [dx,dy,dw,dh]表示RPN网络预测的坐标偏移
